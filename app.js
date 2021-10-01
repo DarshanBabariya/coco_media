@@ -4,6 +4,7 @@ const Cocoroutes = require('./routes/routes');
 const authMiddleware = require('./Middleware/authMiddleware');
 const cookieParser = require('cookie-parser');
 
+const port = process.env.PORT || 8080 ;
 const app = express();
 
 app.use(express.static('public'));
@@ -22,7 +23,7 @@ mongoose.connect('mongodb+srv://darshan:darshan2000@cluster0.ny8zc.mongodb.net/c
 app.get('*',authMiddleware.checkuser);
 app.use(Cocoroutes);
 
-app.listen(8080);
+app.listen(port);
 
 
 
