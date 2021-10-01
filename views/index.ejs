@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>COCO Media</title>
+
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <%- include('assets/header');  %> 
+   
+    <% if(user){ %> 
+        <div class="container">
+            <div class="card text-center mt-4">
+                <div class="card-header">
+                    <h5 class="card-title">Welcome to COCO Media</h5>
+                </div>
+                                <div class="card-body p-4">
+
+                    <ul class="list-group m-4">
+                        <li class="list-group-item d-flex justify-content-between align-items-center p-4">
+                            Total My Publish Post
+                            <span class="badge bg-danger col-2 p-2 ms-4">
+                                <% if(totalpost) { %> 
+                                    <%= totalpost  %> 
+                                </span>
+                                <% }else { %> 
+                                    <%= 0  %> 
+                                    <% } %> 
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center p-4">
+                            Total My Likes
+                            <span class="badge bg-danger col-2 p-2 ms-4 ">0</span>
+                        </li>
+    
+                        </ul>        
+                    </div>
+            <div class="card-footer text-muted">
+                <p class="card-text"></p>
+            </div>
+                   </div>
+        </div>
+    
+    <% } else{ %> 
+        <div class="container">
+            <div class="card text-center mt-4">
+                <div class="card-header">
+                    <h5 class="card-title">Welcome to COCO Media</h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">What is Coco Media ?</h5>
+                            <p class="card-text p-2 m-4">Coco media is a website that facilitates the sharing of ideas,
+                                thoughts, and information through the building of virtual networks and communities like a
+                                social media. Users engage with coco media via a computer, tablet, or smartphone via
+                                web-based browser.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">How Coco media Works ?</h5>
+                            <p class="card-text">Coco medai is like a social media you can share your thoughts and
+                                information.</p>
+    
+                            <ul class="list-group mt-4 mb-4">
+                                <li class="list-group-item list-group-item-dark">First Login or Register Your Self.</li>
+                                <li class="list-group-item ">My Post section in that you can create your post and you can
+                                    see all your post in this section. Also you can delete your post in that.</li>
+                                <li class="list-group-item list-group-item-dark">Coco Feed section in that you can see all
+                                    our coco member posts you can react upon post as like or dislike.</li>
+                                <li class="list-group-item">My Like ssection in that if coco user react on your post that
+                                    can reflect here.</li>
+                                <li class="list-group-item list-group-item-dark">Home section in that you can see how many
+                                    number of posts you was created and how many likes you give.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <p class="card-text">Please Login or Register First.!!</p>
+                </div>
+            </div>
+        </div>
+    <% } %> 
+
+    <div class="speaker"
+        style="color: #f1f1f1; padding:10px;  position:fixed; z-index:1; top:100px; left:10px; border-radius: 100%; background-color: #DC3545; cursor: pointer;"
+        title="Need Help.?" onclick="spechh()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-megaphone-fill"
+            viewBox="0 0 16 16">
+            <path
+                d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-11zm-1 .724c-2.067.95-4.539 1.481-7 1.656v6.237a25.222 25.222 0 0 1 1.088.085c2.053.204 4.038.668 5.912 1.56V3.224zm-8 7.841V4.934c-.68.027-1.399.043-2.008.053A2.02 2.02 0 0 0 0 7v2c0 1.106.896 1.996 1.994 2.009a68.14 68.14 0 0 1 .496.008 64 64 0 0 1 1.51.048zm1.39 1.081c.285.021.569.047.85.078l.253 1.69a1 1 0 0 1-.983 1.187h-.548a1 1 0 0 1-.916-.599l-1.314-2.48a65.81 65.81 0 0 1 1.692.064c.327.017.65.037.966.06z" />
+        </svg>
+    </div>
+
+    <%- include('assets/footer');  %> 
+
+
+    <script>
+        function spechh() {
+            let msg = "<% if(user){ %>"+"Hello <%= user.firstname %> welcome to coco media ! Here You can see your TOTAL PUBLISHED POST and TOTAL LIKES."+ "<% } else {%>" + " Welcome to COCO Media.!! Here you can read What is COCO media and how it is works..."  +" <% } %>";
+
+            let speech = new SpeechSynthesisUtterance();
+            speech.lang = "en-US";
+
+            speech.text = msg;
+            speech.volume = 1;
+            speech.rate = 1;
+            speech.pitch = 1;
+
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
